@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { categoryIndexable, documentIndexable, getBrandCounts, getBrands, getIndustries, getProductCounts, getSolutions, getTrees, productHref, type Division } from '@/lib/catalogue'
 import { getCms, getSettings } from '@/lib/cms'
+import { articleIndexable } from '@/lib/articles'
 import { abs } from '@/lib/seo'
 
 export const revalidate = 3600
@@ -28,6 +29,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (p.seo?.noindex) continue
       const href = productHref(trees, p)
       if (href) entries.push({ url: abs(href), lastModified: p.updatedAt, changeFrequency: 'weekly', priority: 0.6 })
+    }
+
+    const articles = await payload.find({ collection: 'articles', where: { _status: { equals: 'published' } }, limit: 1000, pagination: false, depth: 1, sort: '-publishedAt' })
+    if (articles.docs.length) entries.push({ url: abs('/resources'), changeFrequency: 'weekly', priority: 0.6 })
+    for (const article of articles.docs) {
+      if (articleIndexable(article)) entries.push({ url: abs(`/resources/${article.slug}`), lastModified: article.updatedAt, changeFrequency: 'monthly', priority: 0.5 })
     }
 
     const liveBrands = brands.filter((b) => (brandCounts.get(b.id) ?? 0) > 0 && !b.seo?.noindex)

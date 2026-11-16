@@ -85,18 +85,6 @@ export const industryLinks: NavLink[] = [
   { label: 'EMS and Contract Manufacturing', href: '/industries/ems-and-contract-manufacturing' },
 ]
 
-export const articleLinks: NavLink[] = [
-  { label: 'Complete Guide to SMT Production Lines', href: '/resources/complete-guide-to-smt-production-lines' },
-  { label: 'How to Establish a PCB Assembly Factory', href: '/resources/how-to-establish-a-pcb-assembly-factory' },
-  { label: 'SMT Feeder Types Explained', href: '/resources/smt-feeder-types-explained' },
-  { label: 'How to Select SMT Pick and Place Machines', href: '/resources/how-to-select-smt-pick-and-place-machines' },
-  { label: 'SMT Reflow Oven Working Principles', href: '/resources/smt-reflow-oven-working-principles' },
-  { label: 'AOI vs SPI Inspection', href: '/resources/aoi-vs-spi-inspection' },
-  { label: 'SMT Equipment Maintenance', href: '/resources/smt-equipment-maintenance' },
-  { label: 'PCB Assembly Production-Line Planning', href: '/resources/pcb-assembly-production-line-planning' },
-  { label: 'SMT Spare Parts Compatibility Guide', href: '/resources/smt-spare-parts-compatibility-guide' },
-]
-
 export const topLevel: NavLink[] = [
   { label: 'SMT Solutions', href: '/smt-solutions' },
   { label: 'SMT Equipment', href: '/smt-equipment' },
@@ -118,7 +106,6 @@ export function allNavRoutes(): NavLink[] {
     ...partsGroups.flatMap((g) => g.links),
     ...peripheralLinks,
     ...industryLinks,
-    ...articleLinks,
     { label: 'Compare products', href: '/compare', description: 'Compare listed specifications of up to four products from one category side by side.' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms', href: '/terms' },
@@ -130,7 +117,7 @@ export function allNavRoutes(): NavLink[] {
 export const findNavRoute = (href: string) => allNavRoutes().find((r) => r.href === href)
 
 /** Routes that still show an "in preparation" page. Everything else is a real, CMS-driven page. */
-const unbuiltPrefixes = ['/request-a-quote', '/resources', '/privacy-policy', '/terms']
+const unbuiltPrefixes = ['/request-a-quote', '/privacy-policy', '/terms']
 export function unbuiltRoutes(): NavLink[] {
   return allNavRoutes().filter((r) => unbuiltPrefixes.some((p) => r.href === p || r.href.startsWith(p + '/')))
 }
