@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GTSMT — Homepage Design Proposal (static mockup)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy9:#101D32;--navy7:#183B5B;--cyan:#00A6C7;--cyan7:#007A94;--surface:#F3F6F9;--white:#fff;--ink:#172334;--muted:#5B6B7F;--line:#D5DDE6;--r:10px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.6 Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:Manrope,Inter,sans-serif;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(34px,5vw,58px);font-weight:800}h2{font-size:clamp(28px,3.4vw,40px);font-weight:700}h3{font-size:22px;font-weight:700}
+a{color:var(--cyan7)}p{margin:0 0 1em}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+section{padding:clamp(56px,8vw,96px) 0}
+.alt{background:var(--surface)}.dark{background:var(--navy9);color:#fff}.dark p{color:#C9D4E1}
+.eyebrow{font:600 13px/1 Inter;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan7);margin-bottom:14px;display:block}
+.dark .eyebrow{color:var(--cyan)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:6px;font:600 16px Inter;text-decoration:none;border:2px solid transparent;cursor:pointer;min-height:48px}
+.btn-p{background:var(--cyan);color:var(--navy9)}.btn-p:hover{background:#19b8d8}
+.btn-s{border-color:var(--navy9);color:var(--navy9);background:transparent}.dark .btn-s{border-color:#fff;color:#fff}
+.btn-s:hover{background:rgba(255,255,255,.08)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:99}
+/* header */
+.util{background:var(--navy9);color:#C9D4E1;font-size:13px}.util .wrap{display:flex;justify-content:space-between;padding:8px 24px}
+header.main{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:28px;height:72px}
+.logo{font:800 26px Manrope;color:var(--navy9);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.logo i{display:inline-flex;gap:3px}.logo i b{width:8px;height:18px;border-radius:2px;background:var(--cyan)}.logo i b+b{background:var(--navy7)}
+nav.pri{display:flex;gap:4px;flex:1}nav.pri>div{position:relative}
+nav.pri button,nav.pri a.l{font:600 13.5px Inter;letter-spacing:.04em;text-transform:uppercase;color:var(--navy9);background:none;border:0;padding:26px 12px;cursor:pointer;text-decoration:none;display:block}
+nav.pri button[aria-expanded=true]{color:var(--cyan7);box-shadow:inset 0 -3px 0 var(--cyan)}
+.mega{display:none;position:absolute;left:0;right:0;top:100%;background:#fff;border-top:1px solid var(--line);box-shadow:0 24px 48px rgba(16,29,50,.14);padding:32px 0}
+.mega.open{display:block}.mega .wrap{display:grid;grid-template-columns:repeat(4,1fr) 300px;gap:28px;height:auto}
+.mega h4{font:700 12px Inter;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.mega a{display:block;padding:6px 0;color:var(--ink);text-decoration:none;font-size:15px}.mega a:hover{color:var(--cyan7)}
+.mega .feat{background:var(--navy9);color:#fff;border-radius:var(--r);padding:22px}.mega .feat a{color:var(--cyan);font-weight:600}
+.cta-top{margin-left:auto}
+/* hero */
+.hero{background:var(--navy9);color:#fff;position:relative;overflow:hidden;padding:clamp(64px,9vw,120px) 0 0}
+.hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:24px 24px}
+.hero .wrap{position:relative}.hero p.lead{font-size:20px;max-width:640px;color:#C9D4E1}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap;margin:32px 0 56px}
+.line{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:var(--r) var(--r) 0 0;padding:28px 24px 20px}
+.line svg{width:100%;height:auto;display:block}
+.line small{display:block;color:#9FB0C4;font-size:13px;margin-top:10px}
+/* grids */
+.grid{display:grid;gap:24px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:1fr 1fr}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .2s,box-shadow .2s;text-decoration:none;color:inherit;display:block}
+.card:hover,.card:focus-visible{transform:translateY(-3px);box-shadow:0 14px 30px rgba(16,29,50,.12)}
+.card .body{padding:22px}.card h3{font-size:20px;margin-bottom:8px}.card p{color:var(--muted);font-size:15px;margin:0}
+.ph{aspect-ratio:4/3;background:linear-gradient(135deg,#183B5B,#101D32);position:relative;display:grid;place-items:center;color:#8DA3BB;font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:12px}
+.ph:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
+.ph span{position:relative}
+.tag{display:inline-block;font:600 12px Inter;color:var(--cyan7);background:#E3F4F8;padding:4px 10px;border-radius:99px;margin-bottom:10px}
+.more{font-weight:600;color:var(--cyan7);display:inline-block;margin-top:14px;font-size:15px}
+.ico{width:44px;height:44px;border-radius:8px;background:#E3F4F8;display:grid;place-items:center;margin-bottom:16px}
+.ico svg{width:24px;height:24px;stroke:var(--navy7);fill:none;stroke-width:1.6}
+/* line explorer */
+.explorer{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:start}
+.stations{display:flex;flex-direction:column;gap:8px}
+.st{display:flex;align-items:center;gap:14px;text-align:left;width:100%;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 16px;font:600 16px Inter;cursor:pointer;color:var(--ink)}
+.st b{width:30px;height:30px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:13px;color:var(--navy7)}
+.st[aria-pressed=true]{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,166,199,.18)}.st[aria-pressed=true] b{background:var(--cyan);color:var(--navy9)}
+.panel{background:var(--navy9);color:#fff;border-radius:var(--r);padding:32px;position:sticky;top:100px}.panel p{color:#C9D4E1}
+/* parts search */
+.psearch{background:#fff;border-radius:var(--r);padding:20px;display:grid;grid-template-columns:1fr 1fr 1.4fr auto;gap:12px;margin-top:28px}
+.psearch label{font:600 12px Inter;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+.psearch select,.psearch input{width:100%;padding:13px 12px;border:1px solid var(--line);border-radius:6px;font:16px Inter;min-height:48px;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.chips a{padding:9px 16px;border:1px solid rgba(255,255,255,.25);border-radius:99px;color:#fff;text-decoration:none;font-size:14px}.chips a:hover{background:rgba(255,255,255,.1)}
+.note{border:1px dashed #E0A800;background:#FFF8E1;color:#5B4500;border-radius:8px;padding:12px 16px;font-size:14px;margin-top:20px}
+.dark .note{background:rgba(224,168,0,.12);color:#F3D88A;border-color:#B88F1A}
+.ind{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.ind a{padding:20px;border:1px solid var(--line);border-radius:var(--r);background:#fff;text-decoration:none;color:var(--ink);font:600 16px Manrope}.ind a:hover{border-color:var(--cyan)}
+.res a.row{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:500}.res a.row:hover{color:var(--cyan7)}
+.rfq{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.steps{display:flex;gap:8px;margin:22px 0}.steps span{flex:1;height:6px;border-radius:3px;background:rgba(255,255,255,.18)}.steps span:first-child{background:var(--cyan)}
+.fake{background:#fff;color:var(--ink);border-radius:var(--r);padding:28px}.fake h3{margin-bottom:16px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}.opts div{border:1px solid var(--line);border-radius:8px;padding:14px;font-weight:600;font-size:15px}.opts div:first-child{border-color:var(--cyan);background:#E3F4F8}
+footer{background:var(--navy9);color:#C9D4E1;padding:64px 0 28px;font-size:15px}footer .cols{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
+footer h4{color:#fff;font-size:14px;letter-spacing:.1em;text-transform:uppercase;font-family:Inter}footer a{display:block;color:#C9D4E1;text-decoration:none;padding:4px 0}footer a:hover{color:var(--cyan)}
+footer .bar{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.rv{opacity:0;transform:translateY(14px);transition:.5s ease-out}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}*{scroll-behavior:auto!important}}
+@media(max-width:1000px){nav.pri,.cta-top{display:none}.g3,.g4,.ind{grid-template-columns:1fr 1fr}.explorer,.rfq{grid-template-columns:1fr}.psearch{grid-template-columns:1fr}.panel{position:static}footer .cols{grid-template-columns:1fr 1fr}.burger{display:block!important}}
+@media(max-width:600px){.g3,.g4,.g2,.ind{grid-template-columns:1fr}.util .wrap{flex-direction:column;gap:2px}}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:6px;padding:10px 14px;font:600 14px Inter}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="util"><div class="wrap"><span>[Email — owner to supply] · [Phone / WhatsApp — owner to supply]</span><span>English</span></div></div>
+
+<header class="main"><div class="wrap">
+  <a class="logo" href="#"><i><b></b><b></b></i>GTSMT</a>
+  <nav class="pri" aria-label="Primary">
+    <div><a class="l" href="#">Home</a></div>
+    <div><button aria-expanded="false" data-mega="m1">SMT Solutions</button></div>
+    <div><button aria-expanded="false" data-mega="m2">SMT Equipment</button></div>
+    <div><button aria-expanded="false" data-mega="m3">Spare Parts</button></div>
+    <div><a class="l" href="#peripherals">SMT Peripherals</a></div>
+    <div><a class="l" href="#industries">Industries</a></div>
+    <div><a class="l" href="#resources">Resources</a></div>
+    <div><a class="l" href="#about">About Us</a></div>
+  </nav>
+  <a class="btn btn-p cta-top" href="#rfq">Request a Quote</a>
+  <button class="burger" aria-label="Open menu">Menu</button>
+</div>
+<div class="mega" id="m1"><div class="wrap"><div><h4>Production lines</h4><a href="#">Complete SMT Production Lines</a><a href="#">Turnkey PCB Assembly Lines</a><a href="#">LED SMT Production Lines</a><a href="#">High-Speed SMT Lines</a></div><div><h4>&nbsp;</h4><a href="#">Flexible SMT Lines</a><a href="#">SMT Factory Setup</a><a href="#">Customized SMT Solutions</a></div><div></div><div></div><div class="feat"><h4 style="color:#9FB0C4">Plan your line</h4><p style="font-size:15px">Tell us capacity, board size and sides — get a structured enquiry to our team.</p><a href="#rfq">Start the line enquiry →</a></div></div></div>
+<div class="mega" id="m2"><div class="wrap"><div><h4>Print &amp; inspect</h4><a href="#">Solder Paste Printers</a><a href="#">SPI</a></div><div><h4>Place</h4><a href="#">Pick and Place Machines</a></div><div><h4>Solder</h4><a href="#">Reflow Ovens</a><a href="#">Wave Soldering</a></div><div><h4>Inspect &amp; handle</h4><a href="#">AOI</a><a href="#">Loaders / Unloaders</a><a href="#">Conveyors &amp; Buffers</a><a href="#">Depaneling · Cleaning</a></div><div class="feat"><h4 style="color:#9FB0C4">Compare equipment</h4><p style="font-size:15px">Select up to 3 machines and compare verified specifications side by side.</p><a href="#">Open comparison →</a></div></div></div>
+<div class="mega" id="m3"><div class="wrap"><div><h4>Shop by brand</h4><a href="#">[Brand A]</a><a href="#">[Brand B]</a><a href="#">All brands →</a></div><div><h4>Feeders</h4><a href="#">Tape · Electric · Pneumatic</a><a href="#">Tray · Stick</a><a href="#">Carts &amp; Accessories</a></div><div><h4>Machine parts</h4><a href="#">Nozzles · Motors · Belts</a><a href="#">Sensors · Valves · Filters</a><a href="#">Cameras · Boards · Cables</a></div><div></div><div class="feat"><h4 style="color:#9FB0C4">Find a part</h4><p style="font-size:15px">Search by part number, brand or machine model.</p><a href="#parts">Open parts search →</a></div></div></div>
+</header>
+
+<main id="main">
+<!-- 1 HERO -->
+<section class="hero" style="padding-bottom:0">
+ <div class="wrap">
+  <span class="eyebrow" style="color:var(--cyan)">SMT equipment · Feeders · Spare parts</span>
+  <h1 style="max-width:900px">Complete SMT Solutions for Modern PCB Manufacturing.</h1>
+  <p class="lead">From complete SMT production lines to precision feeders, spare parts and manufacturing peripherals, GTSMT supports electronics manufacturers with integrated PCB assembly solutions.</p>
+  <div class="actions"><a class="btn btn-p" href="#solutions">Explore SMT Solutions →</a><a class="btn btn-s" href="#rfq">Request a Quote</a></div>
+  <div class="line" aria-label="Typical SMT production line sequence">
+   <svg viewBox="0 0 1100 120" role="img" aria-labelledby="lt"><title id="lt">Typical SMT line: loader, printer, SPI, pick and place, reflow oven, AOI, unloader</title>
+    <g stroke="#00A6C7" stroke-width="2" fill="none"><path d="M0 78 H1100" stroke="#2C4766" stroke-width="3"/></g>
+    <g font-family="Inter" font-size="13" fill="#fff" text-anchor="middle">
+     <g><rect x="10" y="30" width="110" height="48" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="65" y="58">Loader</text></g>
+     <g><rect x="170" y="22" width="120" height="56" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="230" y="55">Printer</text></g>
+     <g><rect x="330" y="30" width="90" height="48" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="375" y="58">SPI</text></g>
+     <g><rect x="460" y="14" width="190" height="64" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="555" y="51">Pick &amp; Place</text></g>
+     <g><rect x="690" y="18" width="170" height="60" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="775" y="53">Reflow Oven</text></g>
+     <g><rect x="900" y="30" width="80" height="48" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="940" y="58">AOI</text></g>
+     <g><rect x="1000" y="30" width="90" height="48" rx="6" fill="#183B5B" stroke="#00A6C7"/><text x="1045" y="58">Unloader</text></g>
+    </g>
+    <g fill="#9FB0C4" font-family="Inter" font-size="11" text-anchor="middle"><text x="65" y="108">01</text><text x="230" y="108">02</text><text x="375" y="108">03</text><text x="555" y="108">04</text><text x="775" y="108">05</text><text x="940" y="108">06</text><text x="1045" y="108">07</text></g>
+   </svg>
+   <small>Illustrative line sequence. Hero photography slot: owner-supplied machine/line image to replace the dot-grid backdrop.</small>
+  </div>
+ </div>
+</section>
+
+<!-- 2 DIVISIONS -->
+<section id="divisions"><div class="wrap">
+ <span class="eyebrow">What we supply</span><h2>Six divisions, one point of contact.</h2>
+ <div class="grid g3 rv" style="margin-top:36px">
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><path d="M3 15h18M5 15V9h4v6M11 15V7h4v8M17 15v-4h2v4"/></svg></div><h3>SMT Production Lines</h3><p>Complete, turnkey, LED, high-speed and flexible line configurations.</p><span class="more">Explore solutions →</span></div></a>
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="9" rx="1.5"/><path d="M7 8V5h10v3M7 20h10"/></svg></div><h3>SMT Equipment</h3><p>Pick and place, printers, reflow, AOI/SPI, loaders and more.</p><span class="more">Browse equipment →</span></div></a>
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="6" height="18" rx="1"/><path d="M10 7h6l4 3v7h-4M13 12h4"/></svg></div><h3>Feeders</h3><p>Tape, electric, pneumatic, tray and stick feeders, carts and accessories.</p><span class="more">Browse feeders →</span></div></a>
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div><h3>Spare Parts</h3><p>Nozzles, motors, belts, sensors, valves, filters, cameras, boards, cables.</p><span class="more">Find parts →</span></div></a>
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 14h20M5 14V9h14v5M8 18h.01M16 18h.01"/></svg></div><h3>SMT Peripherals</h3><p>Magazine loaders/unloaders, conveyors, NG/OK buffers, ESD equipment.</p><span class="more">View peripherals →</span></div></a>
+  <a class="card" href="#"><div class="body"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 20V8l8-5 8 5v12M9 20v-6h6v6"/></svg></div><h3>Factory Setup</h3><p>Layout, equipment selection and customised production solutions.</p><span class="more">Plan a factory →</span></div></a>
+ </div>
+</div></section>
+
+<!-- 3 LINE SOLUTIONS (interactive) -->
+<section class="alt" id="solutions"><div class="wrap">
+ <span class="eyebrow">Complete SMT production-line solutions</span><h2>See how a line fits together.</h2>
+ <p style="max-width:680px;color:var(--muted)">Select a station to see its role in the process and the GTSMT categories that supply it. Configurations vary by board, capacity and budget.</p>
+ <div class="explorer rv" style="margin-top:32px">
+  <div class="stations" id="stations"></div>
+  <div class="panel" aria-live="polite"><span class="eyebrow" id="pn" style="color:var(--cyan)"></span><h3 id="pt" style="font-size:26px"></h3><p id="pd"></p><a class="btn btn-p" id="pl" href="#">View category →</a></div>
+ </div>
+ <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-p" href="#rfq">Plan my line</a><a class="btn btn-s" href="#">All production-line solutions</a></div>
+</div></section>
+
+<!-- 4 FEATURED EQUIPMENT -->
+<section><div class="wrap">
+ <span class="eyebrow">Featured SMT equipment</span><h2>Equipment, listed in process order.</h2>
+ <div class="grid g4 rv" style="margin-top:36px">
+  <a class="card" href="#"><div class="ph"><span>Photo slot · product image</span></div><div class="body"><span class="tag">Pick &amp; Place</span><h3>[Product name]</h3><p>[Key spec 1] · [Key spec 2]</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot · product image</span></div><div class="body"><span class="tag">Reflow Oven</span><h3>[Product name]</h3><p>[Key spec 1] · [Key spec 2]</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot · product image</span></div><div class="body"><span class="tag">AOI</span><h3>[Product name]</h3><p>[Key spec 1] · [Key spec 2]</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot · product image</span></div><div class="body"><span class="tag">Solder Paste Printer</span><h3>[Product name]</h3><p>[Key spec 1] · [Key spec 2]</p></div></a>
+ </div>
+ <div class="note">SAMPLE LAYOUT — cards are populated from the CMS "Featured" flag. Specs come from the category spec template; nothing is shown that the owner has not entered.</div>
+</div></section>
+
+<!-- 5 FEEDERS & PARTS -->
+<section class="dark" id="parts"><div class="wrap">
+ <span class="eyebrow">Feeders &amp; spare parts</span><h2>Find the right part for the right machine.</h2>
+ <p style="max-width:680px">Search by part number, or narrow by brand and machine model. Compatibility is shown only where verified, with its source.</p>
+ <form class="psearch" onsubmit="return false">
+  <div><label for="b">Brand</label><select id="b"><option>All brands</option><option>[From CMS]</option></select></div>
+  <div><label for="m">Machine model</label><select id="m"><option>Select brand first</option></select></div>
+  <div><label for="pn2">Part number or keyword</label><input id="pn2" placeholder="e.g. part number, feeder size, nozzle type"></div>
+  <div style="align-self:end"><button class="btn btn-p" style="width:100%">Search parts</button></div>
+ </form>
+ <div class="chips"><a href="#">Tape feeders</a><a href="#">Electric feeders</a><a href="#">Nozzles</a><a href="#">Motors</a><a href="#">Belts</a><a href="#">Sensors</a><a href="#">Cameras</a><a href="#">Electronic boards</a><a href="#">Can't find it? Send us the part →</a></div>
+ <div class="grid g3" style="margin-top:44px">
+  <div><h3 style="font-size:19px">Part origin, stated</h3><p>Every listing says whether a part is genuine OEM, OEM surplus or compatible aftermarket.</p></div>
+  <div><h3 style="font-size:19px">Verified compatibility</h3><p>Machine-model fit appears only when confirmed — never implied.</p></div>
+  <div><h3 style="font-size:19px">Quote by part number</h3><p>One click adds the part to your enquiry, pre-filled.</p></div>
+ </div>
+</div></section>
+
+<!-- 6 PERIPHERALS -->
+<section id="peripherals"><div class="wrap">
+ <span class="eyebrow">SMT peripherals</span><h2>The equipment that keeps a line moving.</h2>
+ <div class="grid g4 rv" style="margin-top:36px">
+  <a class="card" href="#"><div class="ph"><span>Photo slot</span></div><div class="body"><h3>Magazine Loaders &amp; Unloaders</h3><p>Board handling at line start and end.</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot</span></div><div class="body"><h3>PCB Conveyors</h3><p>Linking, inspection, turn and lift conveyors.</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot</span></div><div class="body"><h3>NG/OK Buffer Systems</h3><p>Sort and buffer boards after inspection.</p></div></a>
+  <a class="card" href="#"><div class="ph"><span>Photo slot</span></div><div class="body"><h3>ESD &amp; Line Accessories</h3><p>Protection and production-line accessories.</p></div></a>
+ </div>
+</div></section>
+
+<!-- 7 INDUSTRIES -->
+<section class="alt" id="industries"><div class="wrap">
+ <span class="eyebrow">Industries served</span><h2>Built around how your industry builds boards.</h2>
+ <div class="ind rv" style="margin-top:32px"><a href="#">Automotive Electronics</a><a href="#">Consumer Electronics</a><a href="#">LED Manufacturing</a><a href="#">Medical Electronics</a><a href="#">Industrial Electronics</a><a href="#">Power Electronics</a><a href="#">Telecommunications</a><a href="#">EMS &amp; Contract Manufacturing</a></div>
+</div></section>
+
+<!-- 8 WHY -->
+<section id="about"><div class="wrap">
+ <span class="eyebrow">Why GTSMT</span><h2>Clear information. Honest sourcing. One enquiry.</h2>
+ <div class="grid g4" style="margin-top:32px">
+  <div><h3 style="font-size:19px">Complete scope</h3><p style="color:var(--muted)">Lines, machines, feeders, parts and peripherals through a single supplier relationship.</p></div>
+  <div><h3 style="font-size:19px">Technical clarity</h3><p style="color:var(--muted)">Structured specifications and datasheets on every product page.</p></div>
+  <div><h3 style="font-size:19px">Transparent sourcing</h3><p style="color:var(--muted)">Part origin and verified compatibility stated up front.</p></div>
+  <div><h3 style="font-size:19px">Simple RFQ</h3><p style="color:var(--muted)">Request a quote from any product or plan a whole line in minutes.</p></div>
+ </div>
+ <div class="note">OWNER-SUPPLIED SLOT — years in business, certifications, locations, references and shipping terms appear here only when entered in Website Settings. Nothing is invented.</div>
+</div></section>
+
+<!-- 9 RESOURCES -->
+<section class="alt res" id="resources"><div class="wrap">
+ <div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:12px"><div><span class="eyebrow">Technical resources</span><h2>SMT knowledge centre</h2></div><a class="btn btn-s" href="#">All resources</a></div>
+ <div style="margin-top:12px">
+  <a class="row" href="#"><span>Complete Guide to SMT Production Lines</span><span>→</span></a>
+  <a class="row" href="#"><span>SMT Feeder Types Explained</span><span>→</span></a>
+  <a class="row" href="#"><span>AOI vs SPI Inspection</span><span>→</span></a>
+  <a class="row" href="#"><span>How to Establish a PCB Assembly Factory</span><span>→</span></a>
+ </div>
+</div></section>
+
+<!-- 10 RFQ -->
+<section class="dark" id="rfq"><div class="wrap rfq">
+ <div><span class="eyebrow">Request a quote</span><h2>Tell us what you're building.</h2><p>Request a single part, a machine, or a full line. Our enquiry form collects what we need to respond with a relevant proposal.</p><div class="steps" aria-hidden="true"><span></span><span></span><span></span><span></span></div><p style="font-size:14px">Step 1 of 4 · No account required · Your details are used only to respond to your enquiry.</p></div>
+ <div class="fake"><h3>What do you need?</h3><div class="opts"><div>Complete SMT line</div><div style="border-color:var(--line);background:#fff">Equipment</div><div style="border-color:var(--line);background:#fff">Spare parts</div><div style="border-color:var(--line);background:#fff">Peripherals</div></div><a class="btn btn-p" href="#">Continue →</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <div class="cols">
+  <div><a class="logo" style="color:#fff;padding:0" href="#"><i><b></b><b></b></i>GTSMT</a><p style="margin-top:14px">[Legal company name]<br>[Registered address]<br>[Email] · [Phone]</p></div>
+  <div><h4>Solutions</h4><a href="#">Complete Lines</a><a href="#">Turnkey</a><a href="#">LED Lines</a><a href="#">Factory Setup</a></div>
+  <div><h4>Equipment</h4><a href="#">Pick &amp; Place</a><a href="#">Printers</a><a href="#">Reflow</a><a href="#">AOI / SPI</a></div>
+  <div><h4>Parts</h4><a href="#">Feeders</a><a href="#">Nozzles</a><a href="#">Machine parts</a><a href="#">By brand</a></div>
+  <div><h4>Company</h4><a href="#">About</a><a href="#">Resources</a><a href="#">Contact</a><a href="#">Request a Quote</a></div>
+ </div>
+ <div class="bar"><span>© <span id="y"></span> GTSMT. All rights reserved.</span><span>Third-party brand names are used only to identify compatibility; GTSMT is not affiliated with those companies unless stated.</span><span><a style="display:inline;margin-right:14px" href="#">Privacy</a><a style="display:inline" href="#">Terms</a></span></div>
+</div></footer>
+
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+// mega menu
+const btns=[...document.querySelectorAll('[data-mega]')];
+function closeAll(){btns.forEach(b=>{b.setAttribute('aria-expanded','false');document.getElementById(b.dataset.mega).classList.remove('open')})}
+btns.forEach(b=>b.addEventListener('click',e=>{const o=b.getAttribute('aria-expanded')==='true';closeAll();if(!o){b.setAttribute('aria-expanded','true');document.getElementById(b.dataset.mega).classList.add('open')}e.stopPropagation()}));
+document.addEventListener('click',e=>{if(!e.target.closest('.mega'))closeAll()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+// line explorer
+const S=[
+['Loader','PCB loader','Feeds bare boards into the line from magazines or stacks, keeping the line supplied without manual handling.','PCB Loaders'],
+['Printer','Solder paste printer','Deposits solder paste onto pads through a stencil. Print quality strongly influences downstream defect rates.','Solder Paste Printers'],
+['SPI','Solder paste inspection','Measures the deposited paste so print defects are caught before components are placed.','SPI'],
+['Pick &amp; Place','Pick and place machine','Places components onto the paste-printed board, fed by tape, tray or stick feeders.','Pick and Place Machines'],
+['Reflow','Reflow soldering oven','Heats the assembly through a controlled profile to form the solder joints.','Reflow Soldering Ovens'],
+['AOI','Automated optical inspection','Inspects soldered boards for placement and solder defects. NG/OK buffers can sort results.','AOI'],
+['Unloader','PCB unloader','Collects finished boards into magazines or onto a conveyor for the next process.','PCB Unloaders']];
+const el=document.getElementById('stations');
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='st';b.innerHTML='<b>'+(i+1)+'</b>'+s[0];b.setAttribute('aria-pressed',i===3);b.onclick=()=>pick(i);el.appendChild(b)});
+function pick(i){[...el.children].forEach((c,j)=>c.setAttribute('aria-pressed',i===j));const s=S[i];
+ document.getElementById('pn').textContent='Station 0'+(i+1);document.getElementById('pt').innerHTML=s[1];document.getElementById('pd').innerHTML=s[2];document.getElementById('pl').textContent='View '+s[3].replace('&amp;','&')+' →'}
+pick(3);
+// reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(n=>io.observe(n));
+</script>
+</body>
+</html>

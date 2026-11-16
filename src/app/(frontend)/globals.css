@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
+
+@theme {
+  /* Palette A: ink and electric blue. Semantic names so a future recolour only touches this block. */
+  --color-dark-950: #070b16;
+  --color-dark-900: #0b1124;
+  --color-dark-800: #121b38;
+  --color-dark-700: #1b2850;
+  --color-dark-600: #2d3c6b;
+
+  --color-accent: #2f5bf0;          /* fills: buttons, active states, rules. Always pair with on-accent text. */
+  --color-accent-hover: #2347d1;
+  --color-accent-text: #2347d1;     /* accent text and links on light backgrounds (7.3:1 on white) */
+  --color-accent-on-dark: #86a4ff;  /* accent text on dark backgrounds (7.8:1 on dark-900) */
+  --color-accent-tint: #e7edff;
+  --color-on-accent: #ffffff;       /* text on accent fills (5.4:1) */
+
+  --color-surface: #f4f6fb;
+  --color-ink: #131a2c;
+  --color-muted: #566079;
+  --color-line: #dae0ec;
+  --color-field: #8791ac;           /* borders of inputs and selects: 3.2:1 on white, so the control is findable */
+  --color-error: #b3261e;           /* error text and borders on white (6.5:1) */
+  --color-error-bg: #fdecea;
+  --color-error-line: #f3b8b3;
+  --color-error-ink: #7a1a14;       /* text on the error background */
+  --color-on-dark: #c6cee3;
+  --color-on-dark-muted: #98a3c0;
+
+  --color-placeholder: #e2e8f4;
+  --color-placeholder-text: #46547a;
+
+  --color-warn-bg: #faeeda;
+  --color-warn-border: #ba7517;
+  --color-warn-text: #633806;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 6px;
+  --radius-card: 10px;
+  --container-page: 80rem;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+  body {
+    padding-bottom: var(--compare-tray-h, 0px);
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: #fff;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); letter-spacing: -0.015em; line-height: 1.12; }
+  :focus-visible { outline: 2px solid var(--color-accent-text); outline-offset: 2px; }
+  .on-dark :focus-visible { outline-color: var(--color-accent-on-dark); }
+  ::selection { background: var(--color-accent); color: var(--color-on-accent); }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@layer components {
+  .dotgrid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .eyebrow {
+    display: block;
+    margin-bottom: 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-text);
+  }
+  .on-dark .eyebrow { color: var(--color-accent-on-dark); }
+}
+
+
+@layer components {
+  /* Rich text from the CMS */
+  .prose-gt { color: var(--color-ink); max-width: 68ch; }
+  .prose-gt > :last-child { margin-bottom: 0; }
+  .prose-gt p { margin: 0 0 1em; line-height: 1.7; }
+  .prose-gt h2 { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin: 1.6em 0 0.6em; }
+  .prose-gt h3 { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; line-height: 1.25; margin: 1.4em 0 0.5em; }
+  .prose-gt ul { list-style: disc; padding-left: 1.25rem; margin: 0 0 1em; }
+  .prose-gt ol { list-style: decimal; padding-left: 1.25rem; margin: 0 0 1em; }
+  .prose-gt li { margin: 0.25em 0; line-height: 1.65; }
+  .prose-gt a { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 2px; }
+  .prose-gt strong { font-weight: 600; }
+  .prose-gt blockquote { border-left: 3px solid var(--color-accent); padding-left: 1rem; color: var(--color-muted); margin: 0 0 1em; }
+}
+
+/* Scroll-linked reveal: progressive enhancement, no JS, content visible by default */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+    @keyframes reveal-in {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+  }
+}
