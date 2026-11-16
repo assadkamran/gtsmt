@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { JsonLd } from '@/components/JsonLd'
 import { RichText, hasRichText } from '@/components/RichText'
-import { getPublishedArticle } from '@/lib/articles'
+import { articleIndexable, getPublishedArticle } from '@/lib/articles'
 import { abs, pageMeta } from '@/lib/seo'
 
 export const revalidate = 3600
@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const seoImage = article.seo?.image && typeof article.seo.image === 'object' ? article.seo.image.url : null
   const image = seoImage || (article.image && typeof article.image === 'object' ? article.image.url : null)
-  const noindex = article.seo?.noindex || !article.excerpt?.trim() || !hasRichText(article.body)
+  const noindex = !articleIndexable(article)
   const meta = pageMeta({
     title: article.seo?.title || article.title,
     description: article.seo?.description || article.excerpt,

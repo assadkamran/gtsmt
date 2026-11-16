@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const articles = await payload.find({ collection: 'articles', where: { _status: { equals: 'published' } }, limit: 1000, pagination: false, depth: 1, sort: '-publishedAt' })
-    if (articles.docs.length) entries.push({ url: abs('/resources'), changeFrequency: 'weekly', priority: 0.6 })
+    if (articles.docs.some(articleIndexable)) entries.push({ url: abs('/resources'), changeFrequency: 'weekly', priority: 0.6 })
     for (const article of articles.docs) {
       if (articleIndexable(article)) entries.push({ url: abs(`/resources/${article.slug}`), lastModified: article.updatedAt, changeFrequency: 'monthly', priority: 0.5 })
     }

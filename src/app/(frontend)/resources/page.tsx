@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/Button'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { getPublishedArticles } from '@/lib/articles'
+import { articleIndexable, getPublishedArticles } from '@/lib/articles'
 import { pageMeta } from '@/lib/seo'
 
 export const revalidate = 3600
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: 'SMT Resources and Technical Guides',
     description: 'Practical guides to SMT production lines, equipment selection, inspection, feeders, factory planning and maintenance.',
     path: '/resources',
-    noindex: articles.length === 0,
+    noindex: !articles.some(articleIndexable),
   })
 }
 
